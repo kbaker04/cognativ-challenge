@@ -12,10 +12,14 @@ export const fetchProducts = () => async (dispatch) => {
 };
 
 export const fetchNextProductPage = (page) => async (dispatch) => {
-  const response = await productsAPI.get(`/products?page=${page}`);
-  console.log(response.data);
-  dispatch({
-    type: PRODUCT_ACTIONS.FETCH_NEXT_PRODUCT_PAGE,
-    payload: response.data,
-  });
+  try {
+    const response = await productsAPI.get(`/products?page=${page}`);
+    dispatch({
+      type: PRODUCT_ACTIONS.FETCH_NEXT_PRODUCT_PAGE,
+      payload: response.data,
+    });
+    dispatch({ type: PRODUCT_ACTIONS.ERROR_FETCHING_PRODUCTS, payload: false });
+  } catch (error) {
+    dispatch({ type: PRODUCT_ACTIONS.ERROR_FETCHING_PRODUCTS, payload: true });
+  }
 };
