@@ -1,14 +1,22 @@
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductPage from "./products/ProductPage";
 import PageNotFound from "./PageNotFound";
+import OfflinePage from "./maintenance/OfflinePage";
+import history from "../history";
+
 import "../assets/sass/main.scss";
 
 const App = () => {
   return (
-    <Switch>
-      <Route exact path="/" component={ProductPage} />
-      <Route component={PageNotFound} />
-    </Switch>
+    <Router history={history}>
+      <div id="main" className="container main-content-area">
+        <Switch>
+          <Route exact path="/" component={ProductPage} />
+          <Route exact path="/offline" component={OfflinePage} />
+          <Route component={PageNotFound} />
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
