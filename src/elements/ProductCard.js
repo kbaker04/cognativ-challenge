@@ -14,9 +14,7 @@ const ProductCard = (props) => {
           <div className="d-flex">
             <div>
               <h4>
-                {price
-                  ? `<strong>Price: </strong> ${{ price }}`
-                  : `<strong>Free</strong>`}
+                <strong>{price ? `Price: $${price}` : `Free`}</strong>
               </h4>
               <div className=" mt-1 text-uppercase">{description}</div>
             </div>
