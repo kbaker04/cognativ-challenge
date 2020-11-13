@@ -3,7 +3,28 @@
   max-height: 300px;
 }
 
-.deal-card {
+.product-card {
   transition: 0.1s ease-in-out;
   margin: 20px;
+}
+
+.card-header {
+  height: 40px;
+}
+
+.card-body {
+  height: 150px;
+}
+
+.summary-box-container {
+  text-align: center;
+}
+
+.summary-box {
+  background-color: #78a5ff;
+  width: 300px;
+  height: 100px;
+  display: inline-block;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }

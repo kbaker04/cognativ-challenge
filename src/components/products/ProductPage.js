@@ -5,6 +5,7 @@ import {
   fetchNextProductPage,
 } from "../../redux/actions/productActions";
 import PaginateButtons from "../../elements/PaginateButtons";
+import SummaryBox from "../../elements/SummaryBox";
 import history from "../../history";
 import { renderProducts } from "../../helpers/renders";
 
@@ -50,9 +51,19 @@ const ProductPage = () => {
   };
 
   if (products) {
+    let totPrice = 0;
+
+    products.map((product) => {
+      totPrice += product.price;
+    });
+
     return (
       <div className="container">
-        {renderProducts(products)}
+        <SummaryBox
+          products={products}
+          totPrice={totPrice}
+          avgPrice={totPrice / products.length}
+        />
         <PaginateButtons
           nextPage={nextPage}
           prevPage={prevPage}
@@ -60,6 +71,7 @@ const ProductPage = () => {
           showNext={showNext}
           showPrev={showPrev}
         />
+        {renderProducts(products)}
       </div>
     );
   }
