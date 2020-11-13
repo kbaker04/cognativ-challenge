@@ -25,31 +25,38 @@ const ProductPage = () => {
 
   const dispatch = useDispatch();
 
+  //fetch initial list of products
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
 
+  //runs when firstpage is updated from fetching new product list
   useEffect(() => {
     firstPage && setProducts(firstPage.results);
     let nextPage = firstPage && firstPage.next;
     let prevPage = firstPage && firstPage.previous;
+    //capture the next page path from the api if exists - false disables next button
     setShowNext(nextPage ? nextPage.split("=").pop() : false);
+    //capture the next page path from the api if exists - false disables previous button
     setShowPrev(prevPage ? prevPage.split("=").pop() : false);
   }, [firstPage]);
 
   useEffect(() => {
-    //if unable to page - website offline - improve in next interation
+    //if unable to fetch products redirect to offline path - improve in future interation
     fetchStatus && history.push("/offline");
   }, [fetchStatus]);
 
+  //called from PaginateButtons onClick function
   const nextPage = () => {
     dispatch(fetchNextProductPage(showNext));
   };
 
+  //called from PaginateButtons onClick function
   const prevPage = () => {
     dispatch(fetchNextProductPage(showPrev));
   };
 
+  //if products are set show products
   if (products) {
     let totPrice = 0;
 
@@ -67,15 +74,16 @@ const ProductPage = () => {
         <PaginateButtons
           nextPage={nextPage}
           prevPage={prevPage}
-          title={"Next Page"}
           showNext={showNext}
           showPrev={showPrev}
         />
+        {/* renderProducts in render.js for reusability */}
         {renderProducts(products)}
       </div>
     );
   }
 
+  // create proper loader in future iteration
   return <h3>Loading...</h3>;
 };
 

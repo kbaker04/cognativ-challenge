@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 
 const SummaryBox = (props) => {
   const { totPrice, avgPrice } = props;
