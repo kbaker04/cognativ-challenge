@@ -12,6 +12,7 @@ const App = () => {
       <div id="main" className="container main-content-area">
         <Switch>
           <Route exact path="/" component={ProductPage} />
+          <Route exact path="/product/:product" component={ProductPage} />
           <Route exact path="/offline" component={OfflinePage} />
           <Route component={PageNotFound} />
         </Switch>
