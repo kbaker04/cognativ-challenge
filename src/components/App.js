@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import ProductPage from "./products/ProductPage";
 import PageNotFound from "./PageNotFound";
 import OfflinePage from "./maintenance/OfflinePage";
